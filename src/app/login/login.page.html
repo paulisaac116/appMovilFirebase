@@ -1,9 +1,35 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>My First App</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding" fullscreen="true">
+
+    <form (ngSubmit)="login()" [formGroup]="credentials">
+        <ion-item>
+            <ion-input type="email" placeholder="Email" formControlName="email">
+            </ion-input>
+            <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">
+                Not a valid email
+            </ion-note>
+        </ion-item>
+
+        <ion-item>
+            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+            <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">
+                Not a valid password
+            </ion-note>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" [disable]="!credentials.valid" (click)="login()">
+            Login
+        </ion-button>
+        <ion-button type="button" expand="block" color="secondary" (click)="register()">
+            Register
+        </ion-button>
+
+    </form>
+
 
 </ion-content>
